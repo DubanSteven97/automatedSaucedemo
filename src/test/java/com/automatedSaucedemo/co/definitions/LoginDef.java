@@ -28,7 +28,7 @@ public class LoginDef {
 		
 	}
 	
-	@When("Ingresa credenciales validas")
+	@When("Ingresa credenciales correctas")
 	public void userLoginWhitValidCredentials() {
 		login.typeUsername("standard_user");
 		login.typePassword("secret_sauce");
