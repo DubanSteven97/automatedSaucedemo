@@ -8,7 +8,8 @@ import com.ibm.icu.impl.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.annotations.Steps;
+import net.thucydides.core.annotations.Steps;
+
 
 public class LoginDef {
 	
@@ -37,7 +38,7 @@ public class LoginDef {
 	
 	@Then("La aplicación muestra el modulo principal de productos")
 	public void systemShowProductsModule() {
-		Assert.assrt(validate.titleIsVisible());
+		Assert.assrt(validate.productIsVisible());
 	}
 	
 	@When("Ingresa credenciales invalidas")

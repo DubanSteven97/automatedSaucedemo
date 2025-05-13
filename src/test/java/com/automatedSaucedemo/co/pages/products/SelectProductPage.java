@@ -6,6 +6,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 
 public class SelectProductPage extends PageObject{
 	
+	//@FindBy(id="add-to-cart-sauce-labs-backpack")
+	
 	@FindBy(id="add-to-cart-sauce-labs-backpack")
 	protected WebElementFacade product;
 	

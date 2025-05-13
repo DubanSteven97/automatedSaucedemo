@@ -12,6 +12,7 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 		glue = "com.automatedSaucedemo.co.definitions",
 		//tags = "@Login"
 		
+		
 		tags="@ShoppingCart and @ShoppinCartlist"
 		
 		

@@ -2,7 +2,8 @@ package com.automatedSaucedemo.co.steps.login;
 
 import com.automatedSaucedemo.co.pages.login.LoginPage;
 
-import net.serenitybdd.annotations.Step;
+import net.thucydides.core.annotations.Step;
+
 
 public class LoginSteps extends LoginPage{
 	

@@ -5,7 +5,7 @@ import com.automatedSaucedemo.co.steps.validations.ValidationStep;
 import com.ibm.icu.impl.Assert;
 
 import io.cucumber.java.en.And;
-import net.serenitybdd.annotations.Steps;
+import net.thucydides.core.annotations.Steps;
 
 public class ShoppingDef {
 	
@@ -17,7 +17,9 @@ public class ShoppingDef {
 	ValidationStep validate;
 	
 	@And("agrega productos al carrito de compras")
-	public void userAddProducts() {
+	public void userAddProducts(){
+		
+		//selectProduct.pausarParaInspeccion();
 		selectProduct.addProducts();
 	}
 	

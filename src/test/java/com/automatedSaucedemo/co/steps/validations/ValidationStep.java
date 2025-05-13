@@ -2,7 +2,8 @@ package com.automatedSaucedemo.co.steps.validations;
 
 import com.automatedSaucedemo.co.pages.validations.ValidationPage;
 
-import net.serenitybdd.annotations.Step;
+import net.thucydides.core.annotations.Step;
+
 
 public class ValidationStep extends ValidationPage{
 	
@@ -10,6 +11,11 @@ public class ValidationStep extends ValidationPage{
 	public Boolean titleIsVisible(){
 		return lbl_product.isDisplayed();
 		
+	}
+	
+	@Step("Validar visualización de productos")
+	public Boolean productIsVisible(){
+		return productHome.isDisplayed();
 	}
 	
 	@Step("Validar visualización de mensaje de error")
