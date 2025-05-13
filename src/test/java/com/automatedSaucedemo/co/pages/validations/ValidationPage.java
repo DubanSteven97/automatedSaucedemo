@@ -11,4 +11,9 @@ public class ValidationPage extends PageObject{
 	
 	@FindBy(xpath = "//h3[@data-test=\"error\" and text()='Epic sadface: Username and password do not match any user in this service']")
 	protected WebElementFacade lbl_errorMessage;
+	
+	@FindBy(xpath = "//div[@class='inventory_item_name']")
+	protected WebElementFacade productList;
+	
+	
 }

@@ -16,5 +16,11 @@ public class ValidationStep extends ValidationPage{
 	public Boolean errorMessageIsDisplayed() {
 		return lbl_errorMessage.isDisplayed();
 	}
+	
+	
+	@Step("Validar la existencia del producto")
+	public Boolean productsAreDisplayed() {
+		return productList.isDisplayed();
+	}
 
 }

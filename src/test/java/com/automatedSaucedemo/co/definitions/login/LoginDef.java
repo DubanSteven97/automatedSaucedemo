@@ -1,4 +1,4 @@
-package com.automatedSaucedemo.co.definitions;
+package com.automatedSaucedemo.co.definitions.login;
 
 import com.automatedSaucedemo.co.steps.login.LoginSteps;
 import com.automatedSaucedemo.co.steps.validations.ValidationStep;
@@ -35,7 +35,7 @@ public class LoginDef {
 		login.clickLogin();
 	}
 	
-	@Then("La aplicacin muestra el modulo principal de productos")
+	@Then("La aplicación muestra el modulo principal de productos")
 	public void systemShowProductsModule() {
 		Assert.assrt(validate.titleIsVisible());
 	}
