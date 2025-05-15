@@ -10,9 +10,9 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 		features = "src/test/resources/features",
 		glue = "com.automatedSaucedemo.co.definitions",
-		//tags = "@Login"
+		tags = "@Login"
 		//tags="@ShoppingCart and @ShoppinCartlist"
-		tags = "@Suite"
+		//tags = "@Suite"
 		
 )
 public class Runner {
