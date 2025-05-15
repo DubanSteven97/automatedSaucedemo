@@ -28,5 +28,10 @@ public class ValidationStep extends ValidationPage{
 	public Boolean productsAreDisplayed() {
 		return productList.isDisplayed();
 	}
+	
+	@Step("Validar la confirmación de la orden")
+	public Boolean orderTextIsDisplayed(){
+		return lbl_order.isDisplayed();
+	}
 
 }

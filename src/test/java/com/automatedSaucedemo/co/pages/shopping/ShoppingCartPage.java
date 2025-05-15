@@ -9,10 +9,21 @@ public class ShoppingCartPage extends PageObject{
 	@FindBy(id="checkout")
 	protected WebElementFacade checkoutButton;
 	
-	//id="first-name"
+	@FindBy(id="first-name")
+	protected WebElementFacade txt_firstname;
 			
-	//id="last-name"
+	@FindBy(id="last-name")
+	protected WebElementFacade txt_lastname;
 	
-	//id="postal-code"
+	@FindBy(id="postal-code")
+	protected WebElementFacade txt_postalcode;
+	
+	@FindBy(id="continue")
+	protected WebElementFacade continueButton;
+	
+	@FindBy(id="finish")
+	protected WebElementFacade finishButton;
+	
+	
 
 }
