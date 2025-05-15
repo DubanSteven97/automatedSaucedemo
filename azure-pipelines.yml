@@ -32,6 +32,11 @@ steps:
     sudo chmod +x /usr/local/bin/geckodriver
   displayName: 'Install GeckoDriver'
 
+- script: |
+    pkill -f chrome || true
+    pkill -f chromedriver || true
+  displayName: 'Clean up Chrome processes'
+  
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
