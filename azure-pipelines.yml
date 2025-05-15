@@ -7,9 +7,9 @@ pool:
 steps:
 # Instalar Chrome 
 - script: |
-    sudo apt-get update
-    sudo apt-get install -y chromium-browser
-  displayName: 'Install Chromium'
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+  displayName: 'Install Google Chrome'
 
 - script: |
     CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
