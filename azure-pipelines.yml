@@ -18,8 +18,10 @@ steps:
 
 # Instalar Google Chrome
 - script: |
+    sudo apt-get update
+    sudo apt-get install -y libxss1 libappindicator1 libindicator7
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
   displayName: 'Install Google Chrome'
 
 # Instalar ChromeDriver
@@ -44,7 +46,12 @@ steps:
     sudo mv geckodriver /usr/local/bin/
     sudo chmod +x /usr/local/bin/geckodriver
   displayName: 'Install GeckoDriver'
-
+  
+- script: |
+    google-chrome --version
+    chromedriver --version
+  displayName: 'Verify Chrome versions'
+  
 # Ejecutar pruebas Maven + Serenity
 - task: Maven@3
   inputs:
