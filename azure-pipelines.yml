@@ -6,6 +6,10 @@ pool:
 
 steps:
 
+- task: MavenAuthenticate@0
+  inputs:
+    artifactsFeeds: 'my-nuget-feed'
+
 # Instalar dependencias base
 - script: |
     sudo apt-get update
