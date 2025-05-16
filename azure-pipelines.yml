@@ -54,6 +54,7 @@ steps:
   
 # Ejecutar pruebas Maven + Serenity
 - task: Maven@3
+  displayName: 'Build and Run Tests'
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -62,7 +63,15 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'clean verify serenity:aggregate'
+    goals: 'clean verify'  # Solo ejecuta pruebas, sin generar el reporte aún
+
+- task: Maven@3
+  displayName: 'Generate Serenity Report'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'serenity:aggregate'  # Genera el reporte HTML después
+    options: '-DskipTests=true'  # Evita re-ejecutar pruebas
+  condition: succeededOrFailed()  # Genera el reporte incluso si fallan las pruebas
 
 # Publicar reporte Serenity (aunque falle la build)
 - task: PublishBuildArtifacts@1
