@@ -14,17 +14,19 @@
 		<slf4j-version>2.0.7</slf4j-version>
 	</properties> 
 	
-	<repository>
-	  <id>my-nuget-feed</id>
-	  <url>https://pkgs.dev.azure.com/dubanEstupinan/Ceiba_Prueba/_packaging/my-nuget-feed/maven/v1</url>
-	  <releases>
-	    <enabled>true</enabled>
-	  </releases>
-	  <snapshots>
-	    <enabled>true</enabled>
-	  </snapshots>
-	</repository>
-  
+	<repositories>
+		<repository>
+		  <id>my-nuget-feed</id>
+		  <url>https://pkgs.dev.azure.com/dubanEstupinan/Ceiba_Prueba/_packaging/my-nuget-feed/maven/v1</url>
+		  <releases>
+		    <enabled>true</enabled>
+		  </releases>
+		  <snapshots>
+		    <enabled>true</enabled>
+		  </snapshots>
+		</repository>
+	 </repositories>
+	  
     <dependencies>
 		<dependency>
 		    <groupId>commons-io</groupId>
