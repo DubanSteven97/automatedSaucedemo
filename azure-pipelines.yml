@@ -5,12 +5,20 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# Instalar Chrome 
+
+# Instalar dependencias base
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y unzip wget curl gnupg --no-install-recommends
+  displayName: 'Install base dependencies'
+
+# Instalar Google Chrome
 - script: |
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
   displayName: 'Install Google Chrome'
 
+# Instalar ChromeDriver
 - script: |
     CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
     wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
@@ -19,11 +27,12 @@ steps:
     sudo chmod +x /usr/local/bin/chromedriver
   displayName: 'Install ChromeDriver'
 
-# Instalar Firefox 
+# Instalar Firefox
 - script: |
-    sudo apt-get install -y firefox
+    sudo apt-get install -y --no-install-recommends firefox
   displayName: 'Install Firefox'
 
+# Instalar GeckoDriver
 - script: |
     GECKO_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
     wget https://github.com/mozilla/geckodriver/releases/download/$GECKO_VERSION/geckodriver-$GECKO_VERSION-linux64.tar.gz
@@ -32,11 +41,7 @@ steps:
     sudo chmod +x /usr/local/bin/geckodriver
   displayName: 'Install GeckoDriver'
 
-- script: |
-    pkill -f chrome || true
-    pkill -f chromedriver || true
-  displayName: 'Clean up Chrome processes'
-  
+# Ejecutar pruebas Maven + Serenity
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -48,8 +53,19 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean verify serenity:aggregate'
 
+# Publicar reporte Serenity (aunque falle la build)
 - task: PublishBuildArtifacts@1
+  condition: succeededOrFailed()
   inputs:
     PathtoPublish: 'target/site/serenity'
     ArtifactName: 'SerenityReport'
     publishLocation: 'Container'
+
+# Final: limpiar procesos de navegador
+- script: |
+    pkill -f chrome || true
+    pkill -f chromedriver || true
+    pkill -f firefox || true
+    pkill -f geckodriver || true
+  displayName: 'Clean up browser processes'
+  condition: always()
