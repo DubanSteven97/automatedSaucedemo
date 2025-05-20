@@ -10,6 +10,14 @@ steps:
   inputs:
     artifactsFeeds: 'my-nuget-feed'
 
+- script: |
+    echo "Setting execute permissions for project chromedriver..."
+    chmod +x src/test/resources/chromedriver/chromedriver
+    echo "Verifying Chrome and project's ChromeDriver versions:"
+    google-chrome --version
+    echo "Project's ChromeDriver version:"
+    src/test/resources/chromedriver/chromedriver --version
+  displayName: 'Set Permissions & Verify Chrome/ChromeDriver Versions'
   
 - script: |
     google-chrome --version
