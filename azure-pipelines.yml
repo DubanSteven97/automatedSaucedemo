@@ -10,42 +10,6 @@ steps:
   inputs:
     artifactsFeeds: 'my-nuget-feed'
 
-# Instalar dependencias base
-- script: |
-    sudo apt-get update
-    sudo apt-get install -y unzip wget curl gnupg --no-install-recommends
-  displayName: 'Install base dependencies'
-
-# Instalar Google Chrome
-- script: |
-    sudo apt-get update
-    sudo apt-get install -y libxss1 libappindicator1 libindicator7
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install -y ./google-chrome-stable_current_amd64.deb
-  displayName: 'Install Google Chrome'
-
-# Instalar ChromeDriver
-- script: |
-    CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-    wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-    unzip chromedriver_linux64.zip
-    sudo mv chromedriver /usr/local/bin/chromedriver
-    sudo chmod +x /usr/local/bin/chromedriver
-  displayName: 'Install ChromeDriver'
-
-# Instalar Firefox
-- script: |
-    sudo apt-get install -y --no-install-recommends firefox
-  displayName: 'Install Firefox'
-
-# Instalar GeckoDriver
-- script: |
-    GECKO_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-    wget https://github.com/mozilla/geckodriver/releases/download/$GECKO_VERSION/geckodriver-$GECKO_VERSION-linux64.tar.gz
-    tar -xzf geckodriver-$GECKO_VERSION-linux64.tar.gz
-    sudo mv geckodriver /usr/local/bin/
-    sudo chmod +x /usr/local/bin/geckodriver
-  displayName: 'Install GeckoDriver'
   
 - script: |
     google-chrome --version
@@ -80,12 +44,3 @@ steps:
     PathtoPublish: 'target/site/serenity'
     ArtifactName: 'SerenityReport'
     publishLocation: 'Container'
-
-# Final: limpiar procesos de navegador
-- script: |
-    pkill -f chrome || true
-    pkill -f chromedriver || true
-    pkill -f firefox || true
-    pkill -f geckodriver || true
-  displayName: 'Clean up browser processes'
-  condition: always()
