@@ -14,7 +14,6 @@ public class WebSite {
 	
     @Step("Abrir pagina en el navegador")
     public void navigateTo(String url) {
- 
         saucedemo.setDefaultBaseUrl(url);
         saucedemo.open();
     }

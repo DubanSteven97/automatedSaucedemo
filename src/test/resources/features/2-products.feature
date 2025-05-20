@@ -5,6 +5,8 @@ Feature: CP02 - Validar carrito de compras
 
   Given El usuario navega al sitio web
   When Ingresa credenciales correctas
+  
+  
   @ShoppinCartlist
   Scenario: 1 - Listar los productos en el carrito de compras
     And agrega productos al carrito de compras
